@@ -89,12 +89,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         return cell
     }
     
-    // MARK: Constants
-    
-    private struct Storyboard {
-        static let TweetCellIdentifier = "Tweet"
-    }
-    
     // MARK: Outlets
 
     @IBOutlet weak var searchTextField: UITextField! {
@@ -120,13 +114,36 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         tableView.rowHeight = UITableViewAutomaticDimension
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let destinationvc = segue.destinationViewController
+        if let mentionvc = destinationvc as? MentionTableViewController {
+            if let identifier = segue.identifier {
+                switch identifier {
+                case Storyboard.ShowMentionSegueIdentifier:
+                    if let tweetCell = sender as? TweetTableViewCell {
+                        if let media = tweetCell.tweet?.media where media.count > 0 {
+                            mentionvc.mentions.append(MentionItem(type: .Media, value: media))
+                        }
+                        if let hashtags = tweetCell.tweet?.hashtags where hashtags.count > 0 {
+                            mentionvc.mentions.append(MentionItem(type: .Hashtags, value: hashtags))
+                        }
+                        if let userMentions = tweetCell.tweet?.userMentions where userMentions.count > 0 {
+                            mentionvc.mentions.append(MentionItem(type: .Users, value: userMentions))
+                        }
+                        if let urls = tweetCell.tweet?.urls where urls.count > 0 {
+                            mentionvc.mentions.append(MentionItem(type: .Urls, value: urls))
+                        }
+                    }
+                default:
+                    break
+                }
+            }
+        }
+        
     }
-    */
 }

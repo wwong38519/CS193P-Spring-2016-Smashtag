@@ -33,7 +33,18 @@ class TweetTableViewCell: UITableViewCell
         // load new information from our tweet (if any)
         if let tweet = self.tweet
         {
-            tweetTextLabel?.text = tweet.text
+            let text = NSMutableAttributedString(string: tweet.text)
+            for hashtag in tweet.hashtags {
+                text.addAttribute(NSForegroundColorAttributeName, value: TweetColor.hashtag, range: hashtag.nsrange)
+            }
+            for mention in tweet.userMentions {
+                text.addAttribute(NSForegroundColorAttributeName, value: TweetColor.mention, range: mention.nsrange)
+            }
+            for url in tweet.urls {
+                text.addAttribute(NSForegroundColorAttributeName, value: TweetColor.url, range: url.nsrange)
+            }
+
+            tweetTextLabel?.attributedText = text
             if tweetTextLabel?.text != nil  {
                 for _ in tweet.media {
                     tweetTextLabel.text! += " 📷"
@@ -43,9 +54,10 @@ class TweetTableViewCell: UITableViewCell
             tweetScreenNameLabel?.text = "\(tweet.user)" // tweet.user.description
             
             if let profileImageURL = tweet.user.profileImageURL {
-                if let imageData = NSData(contentsOfURL: profileImageURL) { // blocks main thread!
-                    tweetProfileImageView?.image = UIImage(data: imageData)
-                }
+//                if let imageData = NSData(contentsOfURL: profileImageURL) { // blocks main thread!
+//                    tweetProfileImageView?.image = UIImage(data: imageData)
+//                }
+                fetchImage(profileImageURL)
             }
             
             let formatter = NSDateFormatter()
@@ -59,4 +71,14 @@ class TweetTableViewCell: UITableViewCell
 
     }
     
+    private func fetchImage(url: NSURL) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)){
+            let data = NSData(contentsOfURL: url)
+            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                if let imageData = data where url == self.tweet?.user.profileImageURL {
+                    self.tweetProfileImageView?.image = UIImage(data: imageData)
+                }
+            }
+        }
+    }
 }
