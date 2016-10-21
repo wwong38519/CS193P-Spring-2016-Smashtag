@@ -128,16 +128,16 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
                 case Storyboard.ShowMentionSegueIdentifier:
                     if let tweetCell = sender as? TweetTableViewCell {
                         if let media = tweetCell.tweet?.media where media.count > 0 {
-                            mentionvc.mentions.append(MentionItem(type: .Media, value: media))
+                            mentionvc.mentions.append(TweetMentions(type: .Media, items: media.map { MentionItem.Media($0.url, $0.aspectRatio) }))
                         }
                         if let hashtags = tweetCell.tweet?.hashtags where hashtags.count > 0 {
-                            mentionvc.mentions.append(MentionItem(type: .Hashtags, value: hashtags))
+                            mentionvc.mentions.append(TweetMentions(type: .Hashtags, items: hashtags.map { MentionItem.Hashtags($0.keyword) }))
                         }
                         if let userMentions = tweetCell.tweet?.userMentions where userMentions.count > 0 {
-                            mentionvc.mentions.append(MentionItem(type: .Users, value: userMentions))
+                            mentionvc.mentions.append(TweetMentions(type: .Users, items: userMentions.map { MentionItem.Hashtags($0.keyword) }))
                         }
                         if let urls = tweetCell.tweet?.urls where urls.count > 0 {
-                            mentionvc.mentions.append(MentionItem(type: .Urls, value: urls))
+                            mentionvc.mentions.append(TweetMentions(type: .Urls, items: urls.map { MentionItem.Hashtags($0.keyword) }))
                         }
                     }
                 default:

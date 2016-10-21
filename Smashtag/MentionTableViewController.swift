@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import Twitter
 
 class MentionTableViewController: UITableViewController {
     
-    var mentions = [MentionItem]() {
+    var mentions = [TweetMentions]() {
         didSet {
             tableView.reloadData()
         }
@@ -30,40 +29,39 @@ class MentionTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return mentions[section].itemObjects.count
+        return mentions[section].items.count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return mentions[section].itemType.rawValue
+        return mentions[section].type.rawValue
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if mentions[indexPath.section].itemType == .Media {
-            if let media = mentions[indexPath.section].itemObjects[indexPath.row] as? MediaItem where media.aspectRatio != 0 {
-                // aspectRatio = width / height
-                return tableView.bounds.width / CGFloat(media.aspectRatio)
-            }
+        let item = mentions[indexPath.section].items[indexPath.row]
+        if case let .Media(_, aspectRatio) = item where aspectRatio > 0 {
+            return tableView.bounds.width / CGFloat(aspectRatio)
         }
         return UITableViewAutomaticDimension
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let mention = mentions[indexPath.section]
-        switch mention.itemType {
-        case .Media:
+        let item = mentions[indexPath.section].items[indexPath.row]
+        switch item {
+        case .Media(let url, _):
             let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.MediaItemCellIdentifier, forIndexPath: indexPath)
             if let mediaCell = cell as? MediaItemTableViewCell  {
-                if let item = mention.itemObjects[indexPath.row] as? MediaItem {
-                    mediaCell.url = item.url
-                }
+                mediaCell.url = url
             }
             return cell
-        case .Hashtags, .Users, .Urls:
+        case .Hashtags,.Urls,.Users:
             let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.MentionCellIdentifier, forIndexPath: indexPath)
             if let mentionCell = cell as? MentionTableViewCell {
-                if let item = mention.itemObjects[indexPath.row] as? Mention {
-                    mentionCell.labelText = item.keyword
+                if case let .Hashtags(text) = item {
+                    mentionCell.labelText = text
+                } else if case let .Urls(text) = item {
+                    mentionCell.labelText = text
+                } else if case let .Users(text) = item {
+                    mentionCell.labelText = text
                 }
             }
             return cell
@@ -93,7 +91,7 @@ class MentionTableViewController: UITableViewController {
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == Storyboard.ShowSearchSegueIdentifier {
             if let cell = sender as? MentionTableViewCell, indexPath = tableView.indexPathForCell(cell)
-                where mentions[indexPath.section].itemType == .Urls {
+                where mentions[indexPath.section].type == .Urls {
                 if let cellUrl = cell.labelText, url = NSURL(string: cellUrl) {
                     UIApplication.sharedApplication().openURL(url)
                 }

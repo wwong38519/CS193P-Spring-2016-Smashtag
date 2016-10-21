@@ -56,16 +56,38 @@ public class Truth {
     }
 }
 
-public class MentionItem {
-    let itemType: MentionType
-    let itemObjects: [NSObject]
+public struct TweetMentions {
+    let type: MentionType
+    let items: [MentionItem]
     
-    init(type: MentionType, value: [NSObject]) {
-        self.itemType = type
-        self.itemObjects = value
+    init(type: MentionType, items: [MentionItem]) {
+        self.type = type
+        self.items = items
     }
-    
-    enum MentionType: String {
-        case Media, Hashtags, Users, Urls
+}
+
+public enum MentionType: String {
+    case Media, Hashtags, Users, Urls
+}
+
+public enum MentionItem {
+    case Media(NSURL, Double)
+    case Hashtags(String)
+    case Users(String)
+    case Urls (String)
+
+    /* getting associated values not available in swift 2
+    func associatedValue() -> Any {
+        switch self {
+        case .Media(let url, let aspectRatio):
+            return (url, aspectRatio)
+        case .Hashtags(let text):
+            return text
+        case .Users(let text):
+            return text
+        case .Urls(let text):
+            return text
+        }
     }
+    */
 }
