@@ -12,13 +12,13 @@ class RecentSearchTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = Storyboard.ViewRecentSearchTitle
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
-        title = Storyboard.RecentSearchTitle
     }
 
     // MARK: - Table view data source

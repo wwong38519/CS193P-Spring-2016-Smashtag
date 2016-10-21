@@ -48,14 +48,12 @@
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uQ4-5q-u9S">
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" ambiguous="YES" text="Tweeter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6s-x9-nDW">
-                                                            <frame key="frameInset" width="289" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" text="Tweeter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6s-x9-nDW">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tweet Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1p-nq-x1q">
-                                                            <frame key="frameInset" minY="21" width="289" height="117"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1p-nq-x1q">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -252,11 +250,11 @@
             </objects>
             <point key="canvasLocation" x="3742" y="265"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Tweets-->
         <scene sceneID="wd5-L1-fYW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8be-Iv-epe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="Wbt-bb-ZgB"/>
+                    <tabBarItem key="tabBarItem" title="Tweets" id="Wbt-bb-ZgB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="adS-O0-FRi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -277,6 +275,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="utz-Eo-eWk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="nGl-9x-Wn8">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -289,11 +288,11 @@
             </objects>
             <point key="canvasLocation" x="182" y="584"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Recent Search-->
         <scene sceneID="cs0-e7-ARn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Oa5-4V-PXi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="juN-4E-yw9"/>
+                    <tabBarItem key="tabBarItem" title="Recent Search" id="juN-4E-yw9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BJJ-Ky-ced">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

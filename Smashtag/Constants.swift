@@ -10,14 +10,17 @@ import Foundation
 import UIKit
 
 struct Storyboard {
+    // UITableViewCell
     static let TweetCellIdentifier = "Tweet"
     static let MentionCellIdentifier = "MentionCell"
     static let MediaItemCellIdentifier = "MediaItemCell"
     static let RecentSearchCellIdentifier = "MentionCell"
+    // Segue
     static let ShowMentionSegueIdentifier = "Show Mention"
     static let ShowSearchSegueIdentifier = "Show Search"
     static let ShowImageSegueIdentifier = "Show Image"
-    static let RecentSearchTitle = "Recent Search"
+    // Navigation Controller Title
+    static let ViewRecentSearchTitle = "Recent Search"
 }
 
 struct TweetColor {

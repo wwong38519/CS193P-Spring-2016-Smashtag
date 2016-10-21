@@ -24,7 +24,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             tweets.removeAll()
             lastTwitterRequest = nil
             searchForTweets()
-            title = searchText
+            navigationItem.title = searchText
             Truth.add(searchText!)
         }
     }
@@ -33,7 +33,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
     
     private var twitterRequest: Twitter.Request? {
         if lastTwitterRequest == nil {
-            if let query = searchText where !query.isEmpty {
+            if var query = searchText where !query.isEmpty {
+                if query[query.startIndex] == "@" {
+                    query +=  " OR from:"+query.substringFromIndex(query.startIndex.advancedBy(1))
+                }
                 return Twitter.Request(search: query + " -filter:retweets", count: 100)
             }
         }
@@ -126,18 +129,19 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             if let identifier = segue.identifier {
                 switch identifier {
                 case Storyboard.ShowMentionSegueIdentifier:
-                    if let tweetCell = sender as? TweetTableViewCell {
-                        if let media = tweetCell.tweet?.media where media.count > 0 {
-                            mentionvc.mentions.append(TweetMentions(type: .Media, items: media.map { MentionItem.Media($0.url, $0.aspectRatio) }))
+                    if let tweetCell = sender as? TweetTableViewCell, tweet = tweetCell.tweet {
+                        let screenName = "@"+tweet.user.screenName
+                        if tweet.media.count > 0 {
+                            mentionvc.mentions.append(TweetMentions(type: .Media, items: tweet.media.map { MentionItem.Media($0.url, $0.aspectRatio) }))
                         }
-                        if let hashtags = tweetCell.tweet?.hashtags where hashtags.count > 0 {
-                            mentionvc.mentions.append(TweetMentions(type: .Hashtags, items: hashtags.map { MentionItem.Hashtags($0.keyword) }))
+                        if tweet.hashtags.count > 0 {
+                            mentionvc.mentions.append(TweetMentions(type: .Hashtags, items: tweet.hashtags.map { MentionItem.Hashtags($0.keyword) }))
                         }
-                        if let userMentions = tweetCell.tweet?.userMentions where userMentions.count > 0 {
-                            mentionvc.mentions.append(TweetMentions(type: .Users, items: userMentions.map { MentionItem.Users($0.keyword) }))
-                        }
-                        if let urls = tweetCell.tweet?.urls where urls.count > 0 {
-                            mentionvc.mentions.append(TweetMentions(type: .Urls, items: urls.map { MentionItem.Urls($0.keyword) }))
+                        var arr = tweet.userMentions.map { MentionItem.Users($0.keyword) }
+                        arr.insert(MentionItem.Users(screenName), atIndex: 0)
+                        mentionvc.mentions.append(TweetMentions(type: .Users, items: arr))
+                        if tweet.urls.count > 0 {
+                            mentionvc.mentions.append(TweetMentions(type: .Urls, items: tweet.urls.map { MentionItem.Urls($0.keyword) }))
                         }
                     }
                 default:
