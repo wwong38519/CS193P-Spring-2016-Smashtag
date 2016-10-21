@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MentionTableViewController: UITableViewController {
+class MentionTableViewController: NaviagtionTableViewController {
     
     var mentions = [TweetMentions]() {
         didSet {
@@ -69,6 +69,22 @@ class MentionTableViewController: UITableViewController {
     }
 
     // MARK: - Navigation
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            switch mentions[indexPath.section].type {
+            case .Media:
+                performSegueWithIdentifier(Storyboard.ShowImageSegueIdentifier, sender: cell)
+            case .Hashtags, .Users:
+                performSegueWithIdentifier(Storyboard.ShowSearchSegueIdentifier, sender: cell)
+            case .Urls:
+//                if let urlCell = cell as? MentionTableViewCell, url = NSURL(string: urlCell.labelText!) {
+//                    UIApplication.sharedApplication().openURL(url)
+//                }
+                performSegueWithIdentifier(Storyboard.ShowWebSegueIdentifier, sender: cell)
+            }
+        }
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destinationvc = segue.destinationViewController
@@ -77,6 +93,10 @@ class MentionTableViewController: UITableViewController {
             case Storyboard.ShowSearchSegueIdentifier:
                 if let tweetvc = destinationvc as? TweetTableViewController, mentionCell = sender as? MentionTableViewCell {
                     tweetvc.searchText = mentionCell.labelText
+                }
+            case Storyboard.ShowWebSegueIdentifier:
+                if let webvc = destinationvc as? WebViewController, mentionCell = sender as? MentionTableViewCell {
+                    webvc.url = NSURL(string: mentionCell.labelText!)
                 }
             case Storyboard.ShowImageSegueIdentifier:
                 if let imagevc = destinationvc as? ImageViewController, mediaItemCell = sender as? MediaItemTableViewCell {
@@ -88,16 +108,16 @@ class MentionTableViewController: UITableViewController {
         }
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if identifier == Storyboard.ShowSearchSegueIdentifier {
-            if let cell = sender as? MentionTableViewCell, indexPath = tableView.indexPathForCell(cell)
-                where mentions[indexPath.section].type == .Urls {
-                if let cellUrl = cell.labelText, url = NSURL(string: cellUrl) {
-                    UIApplication.sharedApplication().openURL(url)
-                }
-                return false
-            }
-        }
-        return true
-    }
+//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+//        if identifier == Storyboard.ShowSearchSegueIdentifier {
+//            if let cell = sender as? MentionTableViewCell, indexPath = tableView.indexPathForCell(cell)
+//                where mentions[indexPath.section].type == .Urls {
+//                if let cellUrl = cell.labelText, url = NSURL(string: cellUrl) {
+//                    UIApplication.sharedApplication().openURL(url)
+//                }
+//                return false
+//            }
+//        }
+//        return true
+//    }
 }

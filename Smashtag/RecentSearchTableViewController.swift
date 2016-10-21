@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecentSearchTableViewController: UITableViewController {
+class RecentSearchTableViewController: NaviagtionTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +18,7 @@ class RecentSearchTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         tableView.reloadData()
     }
 

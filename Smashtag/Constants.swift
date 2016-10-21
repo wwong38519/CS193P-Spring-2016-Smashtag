@@ -18,9 +18,15 @@ struct Storyboard {
     // Segue
     static let ShowMentionSegueIdentifier = "Show Mention"
     static let ShowSearchSegueIdentifier = "Show Search"
+    static let ShowWebSegueIdentifier = "Show Web"
     static let ShowImageSegueIdentifier = "Show Image"
     // Navigation Controller Title
     static let ViewRecentSearchTitle = "Recent Search"
+    
+    static let RootButtonTitle = "Root"
+    static let DoneButtonTitle = "Done"
+    static let BackButtonTitle = "<"
+    static let ForwardButtonTitle = ">"
 }
 
 struct TweetColor {
