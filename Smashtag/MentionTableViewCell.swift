@@ -7,33 +7,15 @@
 //
 
 import UIKit
-import Twitter
 
 class MentionTableViewCell: UITableViewCell {
-
-    /*
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    */
-    @IBOutlet weak var mentionTextLabel: UILabel!
     
-    var mentionType: (MentionItem.MentionType)?
-
-    var mention: Mention? {
-        didSet {
-            updateUI()
-        }
-    }
+    @IBOutlet weak var mentionTextLabel: UILabel! { didSet { updateUI() } }
+    
+    var labelText: String? { didSet { updateUI() } }
     
     private func updateUI() {
-        mentionTextLabel.text = mention?.keyword
+        mentionTextLabel?.text = labelText ?? ""
+        
     }
 }

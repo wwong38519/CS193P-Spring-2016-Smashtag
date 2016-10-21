@@ -7,34 +7,16 @@
 //
 
 import UIKit
-import Twitter
 
 class MediaItemTableViewCell: UITableViewCell {
-
-    /*
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    */
     
-    @IBOutlet weak var mediaImageView: UIImageView!
+    @IBOutlet weak var mediaImageView: UIImageView! { didSet { updateUI() } }
     
-    var mediaItem: MediaItem? {
-        didSet {
-            updateUI()
-        }
-    }
+    var url: NSURL? { didSet { updateUI() } }
 
     private func updateUI() {
-        if let mediaURL = mediaItem?.url {
-            fetchImage(mediaURL)
+        if let imageUrl = url {
+            fetchImage(imageUrl)
         }
     }
     
@@ -42,7 +24,7 @@ class MediaItemTableViewCell: UITableViewCell {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)){
             let data = NSData(contentsOfURL: url)
             dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-                if let imageData = data where url == self.mediaItem?.url {
+                if let imageData = data where url == self.url {
                     self.mediaImageView.image = UIImage(data: imageData)
                 }
             }
