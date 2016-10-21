@@ -134,10 +134,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
                             mentionvc.mentions.append(TweetMentions(type: .Hashtags, items: hashtags.map { MentionItem.Hashtags($0.keyword) }))
                         }
                         if let userMentions = tweetCell.tweet?.userMentions where userMentions.count > 0 {
-                            mentionvc.mentions.append(TweetMentions(type: .Users, items: userMentions.map { MentionItem.Hashtags($0.keyword) }))
+                            mentionvc.mentions.append(TweetMentions(type: .Users, items: userMentions.map { MentionItem.Users($0.keyword) }))
                         }
                         if let urls = tweetCell.tweet?.urls where urls.count > 0 {
-                            mentionvc.mentions.append(TweetMentions(type: .Urls, items: urls.map { MentionItem.Hashtags($0.keyword) }))
+                            mentionvc.mentions.append(TweetMentions(type: .Urls, items: urls.map { MentionItem.Urls($0.keyword) }))
                         }
                     }
                 default:
