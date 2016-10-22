@@ -45,22 +45,30 @@ public class Truth {
     private static let size = 100
     private static let key = "TweetRecentSearch.Truth"
     
-    class func add(item: String) {
-        var list = get() ?? [String]()
-        if (!list.contains(item)) {
-            if list.count > size {
-                _ = list.removeLast()
-            }
-            list.insert(item, atIndex: 0)
-            defaults.setObject(list, forKey: key)
-        }
-    }
-    
     class func get() -> [String]? {
         if let list = defaults.arrayForKey(key) as? [String] {
             return list
         } else {
             return nil
+        }
+    }
+    
+    class func add(item: String) {
+        remove(item)
+        var list = get() ?? [String]()
+        if list.count > size {
+            _ = list.removeLast()
+        }
+        list.insert(item, atIndex: 0)
+        defaults.setObject(list, forKey: key)
+    }
+    
+    class func remove(item: String) {
+        if var list = get() {
+            while let index = list.indexOf(item)  {
+                list.removeAtIndex(index)
+            }
+            defaults.setObject(list, forKey: key)
         }
     }
 }

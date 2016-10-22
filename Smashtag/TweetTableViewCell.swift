@@ -74,9 +74,9 @@ class TweetTableViewCell: UITableViewCell
     private func fetchImage(url: NSURL) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)){
             let data = NSData(contentsOfURL: url)
-            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-                if let imageData = data where url == self.tweet?.user.profileImageURL {
-                    self.tweetProfileImageView?.image = UIImage(data: imageData)
+            dispatch_async(dispatch_get_main_queue()) { [weak weakSelf = self] in
+                if let imageData = data where url == weakSelf?.tweet?.user.profileImageURL {
+                    weakSelf?.tweetProfileImageView?.image = UIImage(data: imageData)
                 }
             }
         }
