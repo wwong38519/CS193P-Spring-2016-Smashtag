@@ -14,6 +14,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView! { didSet { updateUI() } }
     
+    @IBOutlet weak var spinner: UIImageView!
+    
     var tweetMedia: (Twitter.Tweet, Twitter.MediaItem)? {
         didSet {
             if let (_, media) = tweetMedia {
@@ -32,14 +34,16 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     private func fetchImage(url: NSURL) {
         if let image = ImageCache.get(url) {
-            imageView.image = image
+            imageView?.image = image
         } else {
+            spinner?.startAnimating()
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)){
                 let data = NSData(contentsOfURL: url)
                 dispatch_async(dispatch_get_main_queue()) { [weak weakSelf = self] in
                     if let imageData = data where url == self.url {
                         let image = UIImage(data: imageData)
-                        weakSelf?.imageView.image = image
+                        weakSelf?.imageView?.image = image
+                        weakSelf?.spinner?.stopAnimating()
                         ImageCache.add(url, value: image!)
                     }
                 }
