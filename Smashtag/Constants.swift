@@ -15,11 +15,13 @@ struct Storyboard {
     static let MentionCellIdentifier = "MentionCell"
     static let MediaItemCellIdentifier = "MediaItemCell"
     static let RecentSearchCellIdentifier = "MentionCell"
+    static let ImageCollectionCellIdentifier = "ImageCell"
     // Segue
     static let ShowMentionSegueIdentifier = "Show Mention"
     static let ShowSearchSegueIdentifier = "Show Search"
     static let ShowWebSegueIdentifier = "Show Web"
     static let ShowImageSegueIdentifier = "Show Image"
+    static let ShowImageCollectionSegueIdentifier = "Show Image Collection"
     // Navigation Controller Title
     static let ViewRecentSearchTitle = "Recent Search"
     
@@ -70,6 +72,19 @@ public class Truth {
             }
             defaults.setObject(list, forKey: key)
         }
+    }
+}
+
+public class ImageCache {
+    
+    private static let cache = NSCache()
+    
+    class func get(key: NSURL) -> UIImage? {
+        return cache.objectForKey(key) as? UIImage ?? nil
+    }
+    
+    class func add(key: NSURL, value: UIImage) {
+        cache.setObject(value, forKey: key)
     }
 }
 

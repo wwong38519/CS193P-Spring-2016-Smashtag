@@ -94,14 +94,14 @@ class TweetTableViewController: NaviagtionTableViewController, UITextFieldDelega
     }
     
     // MARK: Outlets
-
+    
     @IBOutlet weak var searchTextField: UITextField! {
         didSet {
             searchTextField.delegate = self
             searchTextField.text = searchText
         }
     }
-    
+
     // MARK: UITextFieldDelegate
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -125,10 +125,10 @@ class TweetTableViewController: NaviagtionTableViewController, UITextFieldDelega
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         let destinationvc = segue.destinationViewController
-        if let mentionvc = destinationvc as? MentionTableViewController {
-            if let identifier = segue.identifier {
-                switch identifier {
-                case Storyboard.ShowMentionSegueIdentifier:
+        if let identifier = segue.identifier {
+            switch identifier {
+            case Storyboard.ShowMentionSegueIdentifier:
+                if let mentionvc = destinationvc as? MentionTableViewController {
                     if let tweetCell = sender as? TweetTableViewCell, tweet = tweetCell.tweet {
                         let screenName = "@"+tweet.user.screenName
                         if tweet.media.count > 0 {
@@ -144,9 +144,13 @@ class TweetTableViewController: NaviagtionTableViewController, UITextFieldDelega
                             mentionvc.mentions.append(TweetMentions(type: .Urls, items: tweet.urls.map { MentionItem.Urls($0.keyword) }))
                         }
                     }
-                default:
-                    break
                 }
+            case Storyboard.ShowImageCollectionSegueIdentifier:
+                if let imagevc = destinationvc as? ImageCollectionViewController {
+                    imagevc.searchText = searchTextField?.text
+                }
+            default:
+                break
             }
         }
         

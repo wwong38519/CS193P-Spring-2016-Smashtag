@@ -14,6 +14,8 @@
 		2D7969721DB7D857009AB259 /* RecentSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7969711DB7D857009AB259 /* RecentSearchTableViewController.swift */; };
 		2D7969771DBA60C2009AB259 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7969761DBA60C2009AB259 /* WebViewController.swift */; };
 		2D79697A1DBA9D9D009AB259 /* NaviagtionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7969791DBA9D9D009AB259 /* NaviagtionTableViewController.swift */; };
+		2D79697C1DBB3DCF009AB259 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79697B1DBB3DCF009AB259 /* ImageCollectionViewController.swift */; };
+		2D79697E1DBB4BB0009AB259 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79697D1DBB4BB0009AB259 /* ImageCollectionViewCell.swift */; };
 		2DA12F3C1DB0A4FD00ED2FDE /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA12F381DAFF5BB00ED2FDE /* Twitter.framework */; };
 		2DA12F421DB20D9E00ED2FDE /* MentionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA12F411DB20D9E00ED2FDE /* MentionTableViewController.swift */; };
 		ECB713881CCEE7D200DB951A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB713871CCEE7D200DB951A /* AppDelegate.swift */; };
@@ -55,6 +57,8 @@
 		2D7969711DB7D857009AB259 /* RecentSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewController.swift; sourceTree = "<group>"; };
 		2D7969761DBA60C2009AB259 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		2D7969791DBA9D9D009AB259 /* NaviagtionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaviagtionTableViewController.swift; sourceTree = "<group>"; };
+		2D79697B1DBB3DCF009AB259 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
+		2D79697D1DBB4BB0009AB259 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DA12F331DAFF5BB00ED2FDE /* Twitter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Twitter.xcodeproj; path = ../Twitter/Twitter.xcodeproj; sourceTree = "<group>"; };
 		2DA12F411DB20D9E00ED2FDE /* MentionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionTableViewController.swift; sourceTree = "<group>"; };
 		ECB713841CCEE7D200DB951A /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +128,8 @@
 				2D10027A1DB29123004FB53D /* MentionTableViewCell.swift */,
 				2DA12F411DB20D9E00ED2FDE /* MentionTableViewController.swift */,
 				2D7969711DB7D857009AB259 /* RecentSearchTableViewController.swift */,
+				2D79697B1DBB3DCF009AB259 /* ImageCollectionViewController.swift */,
+				2D79697D1DBB4BB0009AB259 /* ImageCollectionViewCell.swift */,
 				2D52C47F1DB68AFB008F5C15 /* ImageViewController.swift */,
 				2D7969761DBA60C2009AB259 /* WebViewController.swift */,
 				ECB713991CCEE7F300DB951A /* Supporting Files */,
@@ -231,7 +237,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D79697C1DBB3DCF009AB259 /* ImageCollectionViewController.swift in Sources */,
 				2DA12F421DB20D9E00ED2FDE /* MentionTableViewController.swift in Sources */,
+				2D79697E1DBB4BB0009AB259 /* ImageCollectionViewCell.swift in Sources */,
 				ECB713881CCEE7D200DB951A /* AppDelegate.swift in Sources */,
 				ECB7139B1CCEE84100DB951A /* TweetTableViewController.swift in Sources */,
 				2D7969771DBA60C2009AB259 /* WebViewController.swift in Sources */,
