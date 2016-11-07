@@ -8,6 +8,7 @@
 
 import UIKit
 import Twitter
+import CoreData
 
 class TweetTableViewController: NaviagtionTableViewController, UITextFieldDelegate
 {
@@ -54,6 +55,7 @@ class TweetTableViewController: NaviagtionTableViewController, UITextFieldDelega
                     if request == weakSelf?.lastTwitterRequest {
                         if !newTweets.isEmpty {
                             weakSelf?.tweets.insert(newTweets, atIndex: 0)
+                            weakSelf?.updateDatabase(newTweets, searchTerm: weakSelf?.searchText)
                         }
                     }
                     weakSelf?.refreshControl?.endRefreshing()
@@ -66,6 +68,53 @@ class TweetTableViewController: NaviagtionTableViewController, UITextFieldDelega
     
     @IBAction func refresh(sender: UIRefreshControl) {
         searchForTweets()
+    }
+    
+    // MARK: CoreData
+    
+    private var managedObjectContext = CoreDataUtils.context
+    
+    private func updateDatabase(tweets: [Twitter.Tweet], searchTerm: String?) {
+        if let context = managedObjectContext {
+            context.performBlock{
+                let request = NSFetchRequest(entityName: CoreDataConstants.SearchTerm)
+                request.predicate = NSPredicate(format: "searchTerm = %@", searchTerm!)
+
+                var cdSearchTerm = (try? context.executeFetchRequest(request).first) as? CDSearchTerm
+                if cdSearchTerm == nil {
+                    cdSearchTerm = NSEntityDescription.insertNewObjectForEntityForName(CoreDataConstants.SearchTerm, inManagedObjectContext: context) as? CDSearchTerm
+                    cdSearchTerm?.searchTerm = searchTerm
+                }
+                
+                var ids = (cdSearchTerm?.tweets as? Set<CDTweet>).flatMap{ $0.flatMap{ $0.id } }
+                let processTweets = ids == nil ? tweets : tweets.filter{ !ids!.contains($0.id) }
+
+                for tweet in processTweets {
+                    if let cdTweet = NSEntityDescription.insertNewObjectForEntityForName(CoreDataConstants.Tweet, inManagedObjectContext: context) as? CDTweet {
+                        cdTweet.id = tweet.id
+                        cdTweet.addToSearchTerms(cdSearchTerm!)
+                        ids?.append(tweet.id)
+                    }
+                    
+                    let mentions = tweet.hashtags.map{ ($0.keyword, MentionType.Hashtags) } + tweet.userMentions.map{ ($0.keyword, MentionType.Users) }
+                    
+                    for (keyword, type) in mentions {
+                        if let cdMention = cdSearchTerm?.mentions?.filteredSetUsingPredicate(NSPredicate(format: "keyword = %@", keyword)).first as? CDMention {
+                            cdMention.count += 1
+                        } else {
+                            if let cdMention = NSEntityDescription.insertNewObjectForEntityForName(CoreDataConstants.Mention, inManagedObjectContext: context) as? CDMention {
+                                cdMention.keyword = keyword
+                                cdMention.type = type.rawValue
+                                cdMention.count = 1
+                                cdMention.addToSearchTerms(cdSearchTerm!)
+                            }
+                        }
+                    }
+                }
+//                try! context.save()
+                CoreDataUtils.printDatabaseStatistics()
+            }
+        }
     }
     
     // MARK: UITableViewDataSource

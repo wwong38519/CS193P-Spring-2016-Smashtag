@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 struct Storyboard {
     // UITableViewCell
@@ -16,12 +17,14 @@ struct Storyboard {
     static let MediaItemCellIdentifier = "MediaItemCell"
     static let RecentSearchCellIdentifier = "MentionCell"
     static let ImageCollectionCellIdentifier = "ImageCell"
+    static let PopularityCellIdentifier = "PopularityCell"
     // Segue
     static let ShowMentionSegueIdentifier = "Show Mention"
     static let ShowSearchSegueIdentifier = "Show Search"
     static let ShowWebSegueIdentifier = "Show Web"
     static let ShowImageSegueIdentifier = "Show Image"
     static let ShowImageCollectionSegueIdentifier = "Show Image Collection"
+    static let ShowPopularitySegueIdentifier = "Show Popularity"
     // Navigation Controller Title
     static let ViewRecentSearchTitle = "Recent Search"
     
@@ -122,4 +125,58 @@ public enum MentionItem {
         }
     }
     */
+}
+
+struct CoreDataConstants {
+    static let Model = "Model"
+    static let Tweet = "CDTweet"
+    static let Mention = "CDMention"
+    static let SearchTerm = "CDSearchTerm"
+}
+
+public class CoreDataUtils {
+    private static var _context: NSManagedObjectContext?
+    static var context: NSManagedObjectContext?{
+        get {
+            if CoreDataUtils._context == nil {
+                CoreDataUtils._context = CoreDataUtils.retrieveContext()
+            }
+            return CoreDataUtils._context
+        }
+    }
+    private class func retrieveContext() -> NSManagedObjectContext? {
+        let fm = NSFileManager.defaultManager()
+        if let docsDir = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first {
+            let url = docsDir.URLByAppendingPathComponent(CoreDataConstants.Model)
+            let document = UIManagedDocument(fileURL: url!)
+            if document.documentState == .Normal {
+                let context = document.managedObjectContext
+                return context
+            } else if document.documentState == .Closed {
+                if let path = url?.path {
+                    let fileExists = fm.fileExistsAtPath(path)
+                    if fileExists {
+                        document.openWithCompletionHandler(nil)
+                    } else {
+                        document.saveToURL(document.fileURL, forSaveOperation: .ForCreating, completionHandler: nil)
+                    }
+                    let context = document.managedObjectContext
+                    return context
+                }
+            }
+        }
+        return nil
+    }
+    class func printDatabaseStatistics() {
+        _context?.performBlock {
+            if let results = try? self._context!.executeFetchRequest(NSFetchRequest(entityName: CoreDataConstants.Tweet)) {
+                print("\(results.count) Tweets")
+            }
+            // a more efficient way to count objects ...
+            let mentionCount = (try? self._context!.countForFetchRequest(NSFetchRequest(entityName: CoreDataConstants.Mention))) ?? 0
+            print("\(mentionCount) Mentions")
+            let searchTerm = (try? self._context!.countForFetchRequest(NSFetchRequest(entityName: CoreDataConstants.SearchTerm))) ?? 0
+            print("\(searchTerm) Search Terms")
+        }
+    }
 }

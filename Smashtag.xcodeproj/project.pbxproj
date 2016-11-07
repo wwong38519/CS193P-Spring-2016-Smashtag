@@ -8,8 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		2D10027B1DB29123004FB53D /* MentionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D10027A1DB29123004FB53D /* MentionTableViewCell.swift */; };
+		2D1B97F71DCB4D5100C9CCA0 /* CDTweet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B97F11DCB4D5100C9CCA0 /* CDTweet+CoreDataClass.swift */; };
+		2D1B97F81DCB4D5100C9CCA0 /* CDTweet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B97F21DCB4D5100C9CCA0 /* CDTweet+CoreDataProperties.swift */; };
+		2D1B97F91DCB4D5100C9CCA0 /* CDSearchTerm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B97F31DCB4D5100C9CCA0 /* CDSearchTerm+CoreDataClass.swift */; };
+		2D1B97FA1DCB4D5100C9CCA0 /* CDSearchTerm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B97F41DCB4D5100C9CCA0 /* CDSearchTerm+CoreDataProperties.swift */; };
+		2D1B97FB1DCB4D5100C9CCA0 /* CDMention+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B97F51DCB4D5100C9CCA0 /* CDMention+CoreDataClass.swift */; };
+		2D1B97FC1DCB4D5100C9CCA0 /* CDMention+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B97F61DCB4D5100C9CCA0 /* CDMention+CoreDataProperties.swift */; };
+		2D1B97FF1DCB95E400C9CCA0 /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB7139A1CCEE84100DB951A /* TweetTableViewController.swift */; };
+		2D3BE6C61DC2469C00CCB3CD /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3BE6C51DC2469B00CCB3CD /* CoreDataTableViewController.swift */; };
+		2D3BE6CA1DC6511100CCB3CD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D3BE6C81DC6511100CCB3CD /* Model.xcdatamodeld */; };
 		2D52C47D1DB6728E008F5C15 /* MediaItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D52C47C1DB6728E008F5C15 /* MediaItemTableViewCell.swift */; };
 		2D52C4801DB68AFB008F5C15 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D52C47F1DB68AFB008F5C15 /* ImageViewController.swift */; };
+		2D72CDED1DC7A1E800C4C16E /* PopularityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D72CDEC1DC7A1E800C4C16E /* PopularityTableViewController.swift */; };
 		2D79696C1DB7D032009AB259 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79696B1DB7D032009AB259 /* Constants.swift */; };
 		2D7969721DB7D857009AB259 /* RecentSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7969711DB7D857009AB259 /* RecentSearchTableViewController.swift */; };
 		2D7969771DBA60C2009AB259 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7969761DBA60C2009AB259 /* WebViewController.swift */; };
@@ -22,7 +32,6 @@
 		ECB7138D1CCEE7D200DB951A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB7138B1CCEE7D200DB951A /* Main.storyboard */; };
 		ECB7138F1CCEE7D200DB951A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECB7138E1CCEE7D200DB951A /* Assets.xcassets */; };
 		ECB713921CCEE7D200DB951A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB713901CCEE7D200DB951A /* LaunchScreen.storyboard */; };
-		ECB7139B1CCEE84100DB951A /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB7139A1CCEE84100DB951A /* TweetTableViewController.swift */; };
 		ECB7139F1CCEEE5B00DB951A /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB7139E1CCEEE5B00DB951A /* TweetTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +60,17 @@
 
 /* Begin PBXFileReference section */
 		2D10027A1DB29123004FB53D /* MentionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionTableViewCell.swift; sourceTree = "<group>"; };
+		2D1B97F11DCB4D5100C9CCA0 /* CDTweet+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDTweet+CoreDataClass.swift"; path = "CoreData/CDTweet+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2D1B97F21DCB4D5100C9CCA0 /* CDTweet+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDTweet+CoreDataProperties.swift"; path = "CoreData/CDTweet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D1B97F31DCB4D5100C9CCA0 /* CDSearchTerm+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDSearchTerm+CoreDataClass.swift"; path = "CoreData/CDSearchTerm+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2D1B97F41DCB4D5100C9CCA0 /* CDSearchTerm+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDSearchTerm+CoreDataProperties.swift"; path = "CoreData/CDSearchTerm+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D1B97F51DCB4D5100C9CCA0 /* CDMention+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDMention+CoreDataClass.swift"; path = "CoreData/CDMention+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2D1B97F61DCB4D5100C9CCA0 /* CDMention+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDMention+CoreDataProperties.swift"; path = "CoreData/CDMention+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D3BE6C51DC2469B00CCB3CD /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
+		2D3BE6C91DC6511100CCB3CD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		2D52C47C1DB6728E008F5C15 /* MediaItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaItemTableViewCell.swift; sourceTree = "<group>"; };
 		2D52C47F1DB68AFB008F5C15 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		2D72CDEC1DC7A1E800C4C16E /* PopularityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularityTableViewController.swift; sourceTree = "<group>"; };
 		2D79696B1DB7D032009AB259 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2D7969711DB7D857009AB259 /* RecentSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewController.swift; sourceTree = "<group>"; };
 		2D7969761DBA60C2009AB259 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +101,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D3BE6D31DC73F1500CCB3CD /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				2D1B97F11DCB4D5100C9CCA0 /* CDTweet+CoreDataClass.swift */,
+				2D1B97F21DCB4D5100C9CCA0 /* CDTweet+CoreDataProperties.swift */,
+				2D1B97F31DCB4D5100C9CCA0 /* CDSearchTerm+CoreDataClass.swift */,
+				2D1B97F41DCB4D5100C9CCA0 /* CDSearchTerm+CoreDataProperties.swift */,
+				2D1B97F51DCB4D5100C9CCA0 /* CDMention+CoreDataClass.swift */,
+				2D1B97F61DCB4D5100C9CCA0 /* CDMention+CoreDataProperties.swift */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		2DA12F321DAFF5BB00ED2FDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,8 +150,12 @@
 		ECB713861CCEE7D200DB951A /* Smashtag */ = {
 			isa = PBXGroup;
 			children = (
-				2D79696B1DB7D032009AB259 /* Constants.swift */,
+				2D3BE6D31DC73F1500CCB3CD /* Core Data */,
 				ECB7138B1CCEE7D200DB951A /* Main.storyboard */,
+				2D3BE6C81DC6511100CCB3CD /* Model.xcdatamodeld */,
+				2D79696B1DB7D032009AB259 /* Constants.swift */,
+				2D3BE6C51DC2469B00CCB3CD /* CoreDataTableViewController.swift */,
+				2D72CDEC1DC7A1E800C4C16E /* PopularityTableViewController.swift */,
 				2D7969791DBA9D9D009AB259 /* NaviagtionTableViewController.swift */,
 				ECB7139E1CCEEE5B00DB951A /* TweetTableViewCell.swift */,
 				ECB7139A1CCEE84100DB951A /* TweetTableViewController.swift */,
@@ -176,7 +211,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Stanford University";
 				TargetAttributes = {
 					ECB713831CCEE7D200DB951A = {
@@ -237,16 +272,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D3BE6C61DC2469C00CCB3CD /* CoreDataTableViewController.swift in Sources */,
 				2D79697C1DBB3DCF009AB259 /* ImageCollectionViewController.swift in Sources */,
+				2D1B97FB1DCB4D5100C9CCA0 /* CDMention+CoreDataClass.swift in Sources */,
+				2D1B97FF1DCB95E400C9CCA0 /* TweetTableViewController.swift in Sources */,
+				2D72CDED1DC7A1E800C4C16E /* PopularityTableViewController.swift in Sources */,
+				2D3BE6CA1DC6511100CCB3CD /* Model.xcdatamodeld in Sources */,
 				2DA12F421DB20D9E00ED2FDE /* MentionTableViewController.swift in Sources */,
 				2D79697E1DBB4BB0009AB259 /* ImageCollectionViewCell.swift in Sources */,
 				ECB713881CCEE7D200DB951A /* AppDelegate.swift in Sources */,
-				ECB7139B1CCEE84100DB951A /* TweetTableViewController.swift in Sources */,
 				2D7969771DBA60C2009AB259 /* WebViewController.swift in Sources */,
+				2D1B97F91DCB4D5100C9CCA0 /* CDSearchTerm+CoreDataClass.swift in Sources */,
+				2D1B97FC1DCB4D5100C9CCA0 /* CDMention+CoreDataProperties.swift in Sources */,
 				2D52C4801DB68AFB008F5C15 /* ImageViewController.swift in Sources */,
+				2D1B97F71DCB4D5100C9CCA0 /* CDTweet+CoreDataClass.swift in Sources */,
 				2D7969721DB7D857009AB259 /* RecentSearchTableViewController.swift in Sources */,
+				2D1B97F81DCB4D5100C9CCA0 /* CDTweet+CoreDataProperties.swift in Sources */,
 				2D10027B1DB29123004FB53D /* MentionTableViewCell.swift in Sources */,
 				2D79697A1DBA9D9D009AB259 /* NaviagtionTableViewController.swift in Sources */,
+				2D1B97FA1DCB4D5100C9CCA0 /* CDSearchTerm+CoreDataProperties.swift in Sources */,
 				ECB7139F1CCEEE5B00DB951A /* TweetTableViewCell.swift in Sources */,
 				2D52C47D1DB6728E008F5C15 /* MediaItemTableViewCell.swift in Sources */,
 				2D79696C1DB7D032009AB259 /* Constants.swift in Sources */,
@@ -406,6 +450,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2D3BE6C81DC6511100CCB3CD /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2D3BE6C91DC6511100CCB3CD /* Model.xcdatamodel */,
+			);
+			currentVersion = 2D3BE6C91DC6511100CCB3CD /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = ECB7137C1CCEE7D200DB951A /* Project object */;
 }

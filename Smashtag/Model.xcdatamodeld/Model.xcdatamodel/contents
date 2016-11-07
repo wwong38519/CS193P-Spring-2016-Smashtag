@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDMention" representedClassName="CDMention" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="keyword" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="searchTerms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDSearchTerm" inverseName="mentions" inverseEntity="CDSearchTerm" syncable="YES"/>
+    </entity>
+    <entity name="CDSearchTerm" representedClassName="CDSearchTerm" syncable="YES">
+        <attribute name="searchTerm" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mentions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDMention" inverseName="searchTerms" inverseEntity="CDMention" syncable="YES"/>
+        <relationship name="tweets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDTweet" inverseName="searchTerms" inverseEntity="CDTweet" syncable="YES"/>
+    </entity>
+    <entity name="CDTweet" representedClassName="CDTweet" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="searchTerms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDSearchTerm" inverseName="tweets" inverseEntity="CDSearchTerm" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CDMention" positionX="-308" positionY="-355" width="128" height="103"/>
+        <element name="CDSearchTerm" positionX="-486" positionY="-421" width="128" height="88"/>
+        <element name="CDTweet" positionX="-666" positionY="-333" width="128" height="73"/>
+    </elements>
+</model>

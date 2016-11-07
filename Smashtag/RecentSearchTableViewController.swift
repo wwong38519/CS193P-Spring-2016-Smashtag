@@ -31,10 +31,7 @@ class RecentSearchTableViewController: NaviagtionTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.RecentSearchCellIdentifier, forIndexPath: indexPath)
         if let list = Truth.get() {
-            let item = list[indexPath.row]
-            if let mentionCell = cell as? MentionTableViewCell {
-                mentionCell.labelText = item
-            }
+            cell.textLabel?.text = list[indexPath.row]
         }
         return cell
     }
@@ -53,8 +50,12 @@ class RecentSearchTableViewController: NaviagtionTableViewController {
         if let identifier = segue.identifier {
             switch identifier {
             case Storyboard.ShowSearchSegueIdentifier:
-                if let tweetvc = destinationvc as? TweetTableViewController, mentionCell = sender as? MentionTableViewCell {
-                    tweetvc.searchText = mentionCell.labelText
+                if let tweetvc = destinationvc as? TweetTableViewController, cell = sender as? UITableViewCell {
+                    tweetvc.searchText = cell.textLabel?.text
+                }
+            case Storyboard.ShowPopularitySegueIdentifier:
+                if let popularityvc = destinationvc as? PopularityTableViewController, cell = sender as? UITableViewCell {
+                    popularityvc.searchText = cell.textLabel?.text
                 }
             default:
                 break
