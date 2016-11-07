@@ -20,13 +20,14 @@ class PopularityTableViewController: CoreDataTableViewController {
             let request = NSFetchRequest(entityName: CoreDataConstants.Mention)
             request.predicate = NSPredicate(format: "SUBQUERY(searchTerms, $s, $s.searchTerm = %@).@count > 0 AND count > 1", searchText!)
             request.sortDescriptors = [
+                NSSortDescriptor(key: "type", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))),
                 NSSortDescriptor(key: "count", ascending: false),
                 NSSortDescriptor(key: "keyword", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
             ]
             fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: request,
                 managedObjectContext: context,
-                sectionNameKeyPath: nil,
+                sectionNameKeyPath: "type",
                 cacheName: nil
             )
         } else {
