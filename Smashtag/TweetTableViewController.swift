@@ -77,6 +77,19 @@ class TweetTableViewController: NaviagtionTableViewController, UITextFieldDelega
     private func updateDatabase(tweets: [Twitter.Tweet], searchTerm: String?) {
         if let context = managedObjectContext {
             context.performBlock{
+                
+                //prune database
+                if let list = Truth.get() {
+                    let request = NSFetchRequest(entityName: CoreDataConstants.SearchTerm)
+                    request.predicate = NSPredicate(format: "NOT (searchTerm IN %@)", list)
+                    if let results = try? context.executeFetchRequest(request) as? [CDSearchTerm] {
+                        results?.forEach{
+                            context.deleteObject($0)
+                            print("delete \($0.searchTerm)")
+                        }
+                    }
+                }
+
                 let request = NSFetchRequest(entityName: CoreDataConstants.SearchTerm)
                 request.predicate = NSPredicate(format: "searchTerm = %@", searchTerm!)
 
