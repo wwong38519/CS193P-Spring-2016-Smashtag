@@ -61,7 +61,7 @@ public class Truth {
     class func add(item: String) {
         remove(item)
         var list = get() ?? [String]()
-        if list.count > size {
+        while list.count >= size {
             _ = list.removeLast()
         }
         list.insert(item, atIndex: 0)

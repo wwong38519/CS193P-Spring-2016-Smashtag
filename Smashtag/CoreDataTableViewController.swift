@@ -17,7 +17,7 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
                     frc.delegate = self
                     try frc.performFetch()
                     print (frc.sections?.count)
-                    print (frc.sections?[0].numberOfObjects)
+                    if frc.sections?.count > 0 { print (frc.sections?[0].numberOfObjects) }
                 }
                 tableView.reloadData()
             } catch let error {
